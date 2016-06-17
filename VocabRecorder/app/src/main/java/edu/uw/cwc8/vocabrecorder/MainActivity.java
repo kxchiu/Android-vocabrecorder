@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    //TODO: create a summary fragment
     private void showSummaryFragment(){
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.containerRight, new SummaryFragment())
