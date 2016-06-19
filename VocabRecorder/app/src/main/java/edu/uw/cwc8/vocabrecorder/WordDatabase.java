@@ -84,6 +84,39 @@ public final class WordDatabase {
         }
     }
 
+    public static void addToDatabase(Context context, String word, String type1, String def1, String syn1,
+                                     String type2, String def2, String syn2, String tStamp) {
+        Log.v("AddToDatabase", "Adding...");
+        Helper helper = new Helper(context);
+
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WordEntry.COL_TITLE, "Vocab");
+        contentValues.put(WordEntry.COL_TYPE1, type1);
+        contentValues.put(WordEntry.COL_DEF1, def1);
+        contentValues.put(WordEntry.COL_SYN1, syn1);
+        contentValues.put(WordEntry.COL_TYPE2, type2);
+        contentValues.put(WordEntry.COL_DEF2, def2);
+        contentValues.put(WordEntry.COL_SYN2, syn2);
+        contentValues.put(WordEntry.COL_TIMESTAMP, tStamp);
+        try {
+            long newRowId = db.insert(WordEntry.TABLE_NAME, null, contentValues);
+            Log.v("Database", ""+newRowId);
+        } catch (SQLiteConstraintException e) {
+            Log.v("Database", "Unexpected SQLite error occurred: " + e);
+        }
+    }
+
+    //WordEntry.COL_WORD,
+    //WordEntry.COL_TYPE1,
+    //WordEntry.COL_DEF1,
+    //WordEntry.COL_SYN1,
+    //WordEntry.COL_TYPE2,
+    //WordEntry.COL_DEF2,
+    //WordEntry.COL_SYN2,
+    //WordEntry.COL_TIMESTAMP
+
     public static Cursor queryDatabase(Context context) {
         Log.v("QueryDatabase", "Query from database");
         Helper helper = new Helper(context);
