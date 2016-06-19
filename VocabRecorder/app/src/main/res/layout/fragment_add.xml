@@ -7,47 +7,115 @@
     android:padding="10dp"
     tools:context="edu.uw.selftracker.SummaryFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Word"
+            android:layout_marginRight="12dp"
+            />
+
+        <EditText
+            android:id="@+id/word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="The word to add"
+            android:textSize="12dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Part of speech"
+            android:layout_marginRight="12dp"
+            />
+
+            <Spinner
+                android:id="@+id/type1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                />
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="How many cups did you drink?"
+        android:text="Definition 1"
         />
-
     <EditText
-        android:id="@+id/drinkCup"
+        android:id="@+id/def1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numeric="integer"
-        android:hint="# of cups you drank"
+        android:hint="Definition for the vocabulary word"
         android:textSize="12dp"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Which store did you buy the milktea from?"
+        android:text="Synonym 1"
         />
 
     <EditText
-        android:id="@+id/drinkTime"
+        android:id="@+id/syn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter the milktea store name"
+        android:hint="Definition for the vocabulary word"
+        android:textSize="12dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Part of speech"
+            android:layout_marginRight="12dp"
+            />
+
+        <Spinner
+            android:id="@+id/type2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Definition 2"
+        />
+    <EditText
+        android:id="@+id/def2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Definition for the vocabulary word"
         android:textSize="12dp"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="How would you rate your milktea? (1=Bad, 5=Great)"
+        android:text="Synonym 2"
         />
 
     <EditText
-        android:id="@+id/drinkRating"
+        android:id="@+id/syn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numeric="integer"
-        android:hint="1=Bad, 5=Great"
+        android:hint="Definition for the vocabulary word"
         android:textSize="12dp"
         />
 

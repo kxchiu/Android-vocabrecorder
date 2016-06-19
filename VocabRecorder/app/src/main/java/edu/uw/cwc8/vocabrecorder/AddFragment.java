@@ -9,7 +9,9 @@ import android.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -43,16 +45,23 @@ public class AddFragment extends DialogFragment {
         builder.setView(rootView);
         activity = (MainActivity)getActivity();
 
+        Spinner spinner = (Spinner)rootView.findViewById(R.id.type1);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity,
+                R.array.planets_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
         builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EditText cupText = (EditText) rootView.findViewById(R.id.drinkCup);
+                EditText wordText = (EditText) rootView.findViewById(R.id.word);
+
                 EditText timeText = (EditText) rootView.findViewById(R.id.drinkTime);
                 EditText ratingText = (EditText) rootView.findViewById(R.id.drinkRating);
 
-                Log.v(TAG, "Recorded: " + cupText.getText() + " at " + timeText.getText());
+                Log.v(TAG, "Recorded: " + wordText.getText() + " at " + timeText.getText());
 
-                int cupNum = Integer.parseInt(cupText.getText().toString());
+                int cupNum = Integer.parseInt(wordText.getText().toString());
                 int ratingNum = Integer.parseInt(ratingText.getText().toString());
                 Long tsLong = System.currentTimeMillis();
                 Date date = new Date(tsLong);
