@@ -66,11 +66,14 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+    /*
     private void showSummaryFragment(){
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.containerRight, new SummaryFragment())
                 .commit();
     };
+    */
+
 
     //TODO: create a add fragment
     public void onShowDialog(AddFragment fragment){
