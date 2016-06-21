@@ -30,10 +30,10 @@ public class DetailFragment extends Fragment {
 
         if(bundle != null) {
             TextView titleWord = (TextView) rootView.findViewById(R.id.txtWord);
-            TextView pos1View = (TextView) rootView.findViewById(R.id.txtType1);
+            TextView type1View = (TextView) rootView.findViewById(R.id.txtType1);
             TextView def1View = (TextView) rootView.findViewById(R.id.txtDef1);
             TextView syn1View = (TextView) rootView.findViewById(R.id.txtSyn1);
-            TextView pos2View = (TextView) rootView.findViewById(R.id.txtType2);
+            TextView type2View = (TextView) rootView.findViewById(R.id.txtType2);
             TextView def2View = (TextView) rootView.findViewById(R.id.txtDef2);
             TextView syn2View = (TextView) rootView.findViewById(R.id.txtSyn2);
 
@@ -48,10 +48,14 @@ public class DetailFragment extends Fragment {
 
             Word vocabWord = new Word(word, t1, d1, s1, t2, d2, s2, tStamp); //recreate vocab word
 
-            //set text for title
+            //set text
             titleWord.setText(vocabWord.toString());
-
-            //TODO: set text for other TextViews
+            type1View.setText(vocabWord.type1);
+            def1View.setText(vocabWord.def1);
+            syn1View.setText(vocabWord.syn1);
+            type2View.setText(vocabWord.type2);
+            def2View.setText(vocabWord.def2);
+            syn2View.setText(vocabWord.syn2);
         }
 
         return rootView;
