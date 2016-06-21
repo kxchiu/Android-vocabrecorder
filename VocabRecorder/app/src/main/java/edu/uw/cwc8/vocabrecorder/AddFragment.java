@@ -45,24 +45,30 @@ public class AddFragment extends DialogFragment {
         builder.setView(rootView);
         activity = (MainActivity)getActivity();
 
-        Spinner spinner = (Spinner)rootView.findViewById(R.id.type1);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity,
-                R.array.planets_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
         builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 EditText wordText = (EditText) rootView.findViewById(R.id.word);
+                //TODO: find spinner1
+                EditText def1Text = (EditText) rootView.findViewById(R.id.def1);
+                EditText syn1Text = (EditText) rootView.findViewById(R.id.syn1);
+                //TODO: find spinner2
+                EditText def2Text = (EditText) rootView.findViewById(R.id.def2);
+                EditText syn2Text = (EditText) rootView.findViewById(R.id.syn2);
 
-                EditText timeText = (EditText) rootView.findViewById(R.id.drinkTime);
-                EditText ratingText = (EditText) rootView.findViewById(R.id.drinkRating);
+                Log.v(TAG, "Recorded: " + wordText.getText());
 
-                Log.v(TAG, "Recorded: " + wordText.getText() + " at " + timeText.getText());
+                //sets the 2 spinners for part of speech
+                Spinner spinner1 = (Spinner)rootView.findViewById(R.id.type1);
+                Spinner spinner2 = (Spinner)rootView.findViewById(R.id.type1);
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity,
+                        R.array.planets_array, android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner1.setAdapter(adapter);
+                spinner2.setAdapter(adapter);
+                spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+                spinner2.setOnItemSelectedListener(new CustomOnItemSelectedListener());
 
-                int cupNum = Integer.parseInt(wordText.getText().toString());
-                int ratingNum = Integer.parseInt(ratingText.getText().toString());
                 Long tsLong = System.currentTimeMillis();
                 Date date = new Date(tsLong);
                 SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm");
@@ -70,11 +76,13 @@ public class AddFragment extends DialogFragment {
 
                 //a Toast to tell the user where they bought the milktea from
                 Toast.makeText(getActivity(),
-                        "You drink: " + cupText.getText() + " at " + timeText.getText(),
+                        "You saved: " + wordText.getText(),
                         Toast.LENGTH_SHORT).show();
 
                 //add to database
-                WordDatabase.addToDatabase(getActivity(), cupNum, timeText.getText().toString(), ratingNum, tStamp);
+                //TODO: retrieve value from the spinner
+                WordDatabase.addToDatabase(getActivity(), wordText.getText().toString(), "", def1Text.getText().toString(), syn1Text.getText().toString(),
+                        "", def2Text.getText().toString(), syn2Text.getText().toString(), tStamp);
             }
         });
 
