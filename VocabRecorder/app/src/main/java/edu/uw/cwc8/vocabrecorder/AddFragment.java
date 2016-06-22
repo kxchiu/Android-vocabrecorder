@@ -60,7 +60,7 @@ public class AddFragment extends DialogFragment {
 
                 //sets the 2 spinners for part of speech
                 Spinner spinner1 = (Spinner)rootView.findViewById(R.id.type1);
-                Spinner spinner2 = (Spinner)rootView.findViewById(R.id.type1);
+                Spinner spinner2 = (Spinner)rootView.findViewById(R.id.type2);
                 ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity,
                         R.array.planets_array, android.R.layout.simple_spinner_item);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

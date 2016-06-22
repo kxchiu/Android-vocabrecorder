@@ -23,7 +23,6 @@ public final class WordDatabase {
     public static abstract class WordEntry implements BaseColumns {
         //_ID = "_id"
         public static final String TABLE_NAME = "vocab";
-        public static final String COL_TITLE = "title";
         public static final String COL_WORD = "word";
         public static final String COL_TYPE1 = "type1";
         public static final String COL_DEF1 = "definition1";
@@ -38,13 +37,12 @@ public final class WordDatabase {
     public static final String CREATE_WORD_TABLE =
             "CREATE TABLE " + WordEntry.TABLE_NAME + "(" +
                     WordEntry._ID + " INTEGER PRIMARY KEY" + "," +
-                    WordEntry.COL_TITLE + " TEXT" + "," +
-                    WordEntry.COL_WORD + "TEXT" + "," +
-                    WordEntry.COL_TYPE1 + "TEXT" + "," +
-                    WordEntry.COL_DEF1 + " TEXT" + "," +
+                    WordEntry.COL_WORD + " TEXT" + "," +
+                    WordEntry.COL_TYPE1 + " TEXT" + "," +
+                    WordEntry.COL_DEF1 + "  TEXT" + "," +
                     WordEntry.COL_SYN1 + " TEXT" + "," +
-                    WordEntry.COL_TYPE2 + "TEXT" + "," +
-                    WordEntry.COL_DEF2 + " TEXT" + "," +
+                    WordEntry.COL_TYPE2 + " TEXT" + "," +
+                    WordEntry.COL_DEF2 + "  TEXT" + "," +
                     WordEntry.COL_SYN2 + " TEXT" + "," +
                     WordEntry.COL_TIMESTAMP + " TEXT" +
                     ")";
@@ -92,7 +90,7 @@ public final class WordDatabase {
         SQLiteDatabase db = helper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(WordEntry.COL_TITLE, "Vocab");
+        contentValues.put(WordEntry.COL_WORD, word);
         contentValues.put(WordEntry.COL_TYPE1, type1);
         contentValues.put(WordEntry.COL_DEF1, def1);
         contentValues.put(WordEntry.COL_SYN1, syn1);
@@ -102,32 +100,23 @@ public final class WordDatabase {
         contentValues.put(WordEntry.COL_TIMESTAMP, tStamp);
         try {
             long newRowId = db.insert(WordEntry.TABLE_NAME, null, contentValues);
-            Log.v("Database", ""+newRowId);
+            Log.v("Database", "" + newRowId);
         } catch (SQLiteConstraintException e) {
             Log.v("Database", "Unexpected SQLite error occurred: " + e);
         }
     }
 
-    //WordEntry.COL_WORD,
-    //WordEntry.COL_TYPE1,
-    //WordEntry.COL_DEF1,
-    //WordEntry.COL_SYN1,
-    //WordEntry.COL_TYPE2,
-    //WordEntry.COL_DEF2,
-    //WordEntry.COL_SYN2,
-    //WordEntry.COL_TIMESTAMP
-
     public static Cursor queryDatabase(Context context) {
         Log.v("QueryDatabase", "Query from database");
         Helper helper = new Helper(context);
-
         SQLiteDatabase db = helper.getWritableDatabase();
 
         String descOrder = WordEntry._ID + " DESC";
 
+        Log.v("***QueryDatabase***", "" + WordEntry.COL_WORD);
+
         String[] cols = new String[]{
                 WordEntry._ID,
-                WordEntry.COL_TITLE,
                 WordEntry.COL_WORD,
                 WordEntry.COL_TYPE1,
                 WordEntry.COL_DEF1,
