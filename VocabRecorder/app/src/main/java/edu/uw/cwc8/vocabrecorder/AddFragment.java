@@ -60,14 +60,17 @@ public class AddFragment extends DialogFragment {
 
                 //sets the 2 spinners for part of speech
                 Spinner spinner1 = (Spinner)rootView.findViewById(R.id.type1);
-                Spinner spinner2 = (Spinner)rootView.findViewById(R.id.type2);
-                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity,
-                        R.array.planets_array, android.R.layout.simple_spinner_item);
+                //Spinner spinner2 = (Spinner)rootView.findViewById(R.id.type2);
+                String [] values =
+                        {"Time at Residence","Under 6 months","6-12 months","1-2 years","2-4 years","4-8 years","8-15 years","Over 15 years",};
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                                (activity, android.R.layout.simple_spinner_item, values);
+                //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity,R.array.planets_array, android.R.layout.simple_spinner_item);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner1.setAdapter(adapter);
-                spinner2.setAdapter(adapter);
+                //spinner2.setAdapter(adapter);
                 spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
-                spinner2.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+                //spinner2.setOnItemSelectedListener(new CustomOnItemSelectedListener());
 
                 Long tsLong = System.currentTimeMillis();
                 Date date = new Date(tsLong);
