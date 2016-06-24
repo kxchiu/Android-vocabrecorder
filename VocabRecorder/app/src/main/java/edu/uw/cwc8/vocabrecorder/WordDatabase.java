@@ -50,6 +50,9 @@ public final class WordDatabase {
     //constant String for dropping the milktea table
     public static final String DROP_FAVORITE_TABLE = "DROP TABLE IF EXISTS " + WordEntry.TABLE_NAME;
 
+    //constant String for deleting a word
+    public static final String DELETE_A_WORD = "DELETE FROM " + WordEntry.TABLE_NAME + " WHERE word='";
+
     // helper class
     public static class Helper extends SQLiteOpenHelper {
         private static Helper instance;
@@ -82,6 +85,7 @@ public final class WordDatabase {
         }
     }
 
+    // add a word to the database
     public static void addToDatabase(Context context, String word, String type1, String def1, String syn1,
                                      String type2, String def2, String syn2, String tStamp) {
         Log.v("AddToDatabase", "Adding...");
@@ -106,6 +110,15 @@ public final class WordDatabase {
         }
     }
 
+    // delete the selected word from the database
+    public static void deleteFromDatabase(Context context, String word){
+        Log.v("DeleteFromDatabase", "Deleting...");
+        Helper helper = new Helper(context);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.execSQL(DELETE_A_WORD + word + "';");
+    }
+
+    // query the records from the database
     public static Cursor queryDatabase(Context context) {
         Log.v("QueryDatabase", "Query from database");
         Helper helper = new Helper(context);

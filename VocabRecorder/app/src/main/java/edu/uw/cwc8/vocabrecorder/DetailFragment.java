@@ -1,6 +1,7 @@
 package edu.uw.cwc8.vocabrecorder;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -26,7 +28,7 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
-        Bundle bundle = getArguments();
+        final Bundle bundle = getArguments();
 
         if(bundle != null) {
             TextView titleWord = (TextView) rootView.findViewById(R.id.txtWord);
@@ -57,6 +59,40 @@ public class DetailFragment extends Fragment {
             def2View.setText(vocabWord.def2);
             syn2View.setText(vocabWord.syn2);
         }
+
+        // search for the word in browser
+        View btnG = rootView.findViewById(R.id.btnGoogle);
+        btnG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v(TAG, "***Google*** button clicked!");
+
+                String searchWord = bundle.getString("word");
+                Log.v(TAG, "*Searching*: " + searchWord);
+
+                Intent intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=" + searchWord));
+                startActivity(intent);
+            }
+        });
+
+        // TODO: complete update
+        // update the word in database
+        View btnU = rootView.findViewById(R.id.btnUpdate);
+
+        // delete the word from database
+        // thought process: onClick -> delete from database -> replace the right panel with an empty fragment or something
+        View btnD = rootView.findViewById(R.id.btnDelete);
+        btnD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v(TAG, "***Delete*** button clicked!");
+                WordDatabase.deleteFromDatabase(getContext(), bundle.getString("word"));
+                Toast t = Toast.makeText(getContext(),
+                        "You have deleted the word '" + bundle.getString("word") + "'",
+                        Toast.LENGTH_SHORT);
+            }
+        });
 
         return rootView;
     }
