@@ -48,12 +48,13 @@
                 android:text="Part of speech"
                 android:layout_marginRight="12dp"
                 />
-
-                <Spinner
-                    android:id="@+id/type1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    />
+            <EditText
+                android:id="@+id/type1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Part of Speech 1"
+                android:textSize="12dp"
+                />
         </LinearLayout>
 
         <TextView
@@ -95,11 +96,20 @@
                 android:layout_marginRight="12dp"
                 />
 
+            <EditText
+                android:id="@+id/type2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Part of Speech 2"
+                android:textSize="12dp"
+                />
+            <!--
             <Spinner
                 android:id="@+id/type2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                />
+                android:spinnerMode="dropdown"
+                />-->
         </LinearLayout>
 
         <TextView

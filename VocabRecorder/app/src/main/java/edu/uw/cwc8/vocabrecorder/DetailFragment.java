@@ -91,6 +91,13 @@ public class DetailFragment extends Fragment {
                 Toast t = Toast.makeText(getContext(),
                         "You have deleted the word '" + bundle.getString("word") + "'",
                         Toast.LENGTH_SHORT);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.containerRight, new SummaryFragment())
+                        .addToBackStack(null)
+                        .commit();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.containerLeft, new WordFragment())
+                        .commit();
             }
         });
 

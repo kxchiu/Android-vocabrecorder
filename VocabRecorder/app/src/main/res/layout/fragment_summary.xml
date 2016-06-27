@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24dp"
-        android:text="Summary about Your Drinking Activity"
+        android:text=""
         android:layout_marginBottom="10dp"
         />
 

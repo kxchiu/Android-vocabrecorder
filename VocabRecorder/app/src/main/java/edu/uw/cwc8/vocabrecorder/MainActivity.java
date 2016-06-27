@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements WordFragment.OnWo
             Log.v(TAG, "Landscape Mode Visibility: " + frameRight.getVisibility());
 
             showWordFragment();
-            showDetailFragment();
+            showSummaryFragment();
         } else {
             Log.v(TAG,"Your device is not in landscape mode");
         }
