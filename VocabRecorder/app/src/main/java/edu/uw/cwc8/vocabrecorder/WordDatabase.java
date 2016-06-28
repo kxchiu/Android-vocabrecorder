@@ -110,6 +110,27 @@ public final class WordDatabase {
         }
     }
 
+    public static void updateDatabase(Context context, String word, String type1, String def1, String syn1,
+                                      String type2, String def2, String syn2, String tStamp, int id){
+        Helper helper = new Helper(context);
+
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WordEntry.COL_WORD, word);
+        contentValues.put(WordEntry.COL_TYPE1, type1);
+        contentValues.put(WordEntry.COL_DEF1, def1);
+        contentValues.put(WordEntry.COL_SYN1, syn1);
+        contentValues.put(WordEntry.COL_TYPE2, type2);
+        contentValues.put(WordEntry.COL_DEF2, def2);
+        contentValues.put(WordEntry.COL_SYN2, syn2);
+        contentValues.put(WordEntry.COL_TIMESTAMP, tStamp);
+
+        try {
+            int rowsAffected = db.update(WordEntry.TABLE_NAME, contentValues, WordEntry._ID + "=" + id, null);
+        } catch (SQLiteConstraintException e){}
+    }
+
     // delete the selected word from the database
     public static void deleteFromDatabase(Context context, String word){
         Log.v("DeleteFromDatabase", "Deleting...");

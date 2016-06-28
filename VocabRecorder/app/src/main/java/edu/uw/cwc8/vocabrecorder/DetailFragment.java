@@ -1,6 +1,7 @@
 package edu.uw.cwc8.vocabrecorder;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -79,6 +80,24 @@ public class DetailFragment extends Fragment {
         // TODO: complete update
         // update the word in database
         View btnU = rootView.findViewById(R.id.btnUpdate);
+        btnU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.support.v4.app.DialogFragment add = new AddFragment();
+                Bundle bundleU = new Bundle();
+                bundleU.putInt("id", bundle.getInt("id"));
+                bundleU.putString("word", bundle.getString("word"));
+                bundleU.putString("type1", bundle.getString("type1"));
+                bundleU.putString("def1", bundle.getString("def1"));
+                bundleU.putString("syn1", bundle.getString("syn1"));
+                bundleU.putString("type2", bundle.getString("type2"));
+                bundleU.putString("def2",  bundle.getString("def2"));
+                bundleU.putString("syn2", bundle.getString("syn2"));
+                bundleU.putString("tStamp", bundle.getString("timestamp"));
+                add.setArguments(bundleU);
+                add.show(getFragmentManager(), "SHOW");
+            }
+        });
 
         // delete the word from database
         // thought process: onClick -> delete from database -> replace the right panel with an empty fragment or something
