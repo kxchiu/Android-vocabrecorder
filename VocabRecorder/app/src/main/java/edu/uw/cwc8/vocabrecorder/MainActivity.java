@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import edu.uw.cwc8.vocabrecorder.AddFragment;
 
 public class MainActivity extends AppCompatActivity implements WordFragment.OnWordSelectionListener {
 
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements WordFragment.OnWo
     //TODO: create a add fragment
     public void onShowDialog(AddFragment fragment){
         Log.v(TAG, "Callback active");
-        FragmentManager manager = getFragmentManager();
+        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
         fragment.show(manager, "dialog");
     }
 

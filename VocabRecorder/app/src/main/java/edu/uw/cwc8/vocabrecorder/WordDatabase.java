@@ -125,9 +125,9 @@ public final class WordDatabase {
         contentValues.put(WordEntry.COL_DEF2, def2);
         contentValues.put(WordEntry.COL_SYN2, syn2);
         contentValues.put(WordEntry.COL_TIMESTAMP, tStamp);
-
+        deleteFromDatabase(context, word);
         try {
-            int rowsAffected = db.update(WordEntry.TABLE_NAME, contentValues, WordEntry._ID + "=" + id, null);
+            long newRowId = db.insert(WordEntry.TABLE_NAME, null, contentValues);
         } catch (SQLiteConstraintException e){}
     }
 

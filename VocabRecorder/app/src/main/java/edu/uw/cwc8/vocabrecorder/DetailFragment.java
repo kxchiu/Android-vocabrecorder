@@ -96,6 +96,11 @@ public class DetailFragment extends Fragment {
                 bundleU.putString("tStamp", bundle.getString("timestamp"));
                 add.setArguments(bundleU);
                 add.show(getFragmentManager(), "SHOW");
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.containerRight, new SummaryFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 

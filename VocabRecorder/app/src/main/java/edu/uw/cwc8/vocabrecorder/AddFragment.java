@@ -53,19 +53,19 @@ public class AddFragment extends android.support.v4.app.DialogFragment {
         });
         activity = (MainActivity)getActivity();
         final Bundle extras = getArguments();
+        final EditText wordText = (EditText) rootView.findViewById(R.id.word);
+        final EditText pos1Text = (EditText) rootView.findViewById(R.id.type1);
+        final EditText def1Text = (EditText) rootView.findViewById(R.id.def1);
+        final EditText syn1Text = (EditText) rootView.findViewById(R.id.syn1);
+        final EditText pos2Text = (EditText) rootView.findViewById(R.id.type2);
+        final EditText def2Text = (EditText) rootView.findViewById(R.id.def2);
+        final EditText syn2Text = (EditText) rootView.findViewById(R.id.syn2);
 
         if (extras == null) {
+            Log.v("***Add***", "Extras is empty");
             builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    EditText wordText = (EditText) rootView.findViewById(R.id.word);
-                    EditText pos1Text = (EditText) rootView.findViewById(R.id.type1);
-                    EditText def1Text = (EditText) rootView.findViewById(R.id.def1);
-                    EditText syn1Text = (EditText) rootView.findViewById(R.id.syn1);
-                    EditText pos2Text = (EditText) rootView.findViewById(R.id.type2);
-                    EditText def2Text = (EditText) rootView.findViewById(R.id.def2);
-                    EditText syn2Text = (EditText) rootView.findViewById(R.id.syn2);
-
                     Log.v(TAG, "Recorded: " + wordText.getText());
 
                     Long tsLong = System.currentTimeMillis();
@@ -83,23 +83,17 @@ public class AddFragment extends android.support.v4.app.DialogFragment {
                 }
             });
         } else {
+            Log.v("***Add***", "Extras is NOT empty");
+            Log.v("***Add***", extras.getString("word"));
+            wordText.setText(extras.getString("word"));
+            pos1Text.setText(extras.getString("type1"));
+            def1Text.setText(extras.getString("def1"));
+            syn1Text.setText(extras.getString("syn1"));
+            pos2Text.setText(extras.getString("type2"));
+            def2Text.setText(extras.getString("def2"));
+            syn2Text.setText(extras.getString("syn2"));
             builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id){
-                    EditText wordText = (EditText) rootView.findViewById(R.id.word);
-                    wordText.setText(extras.getString("word"));
-                    EditText pos1Text = (EditText) rootView.findViewById(R.id.type1);
-                    pos1Text.setText(extras.getString("type1"));
-                    EditText def1Text = (EditText) rootView.findViewById(R.id.def1);
-                    def1Text.setText(extras.getString("def1"));
-                    EditText syn1Text = (EditText) rootView.findViewById(R.id.syn1);
-                    syn1Text.setText(extras.getString("syn1"));
-                    EditText pos2Text = (EditText) rootView.findViewById(R.id.type2);
-                    pos2Text.setText(extras.getString("type2"));
-                    EditText def2Text = (EditText) rootView.findViewById(R.id.def2);
-                    def2Text.setText(extras.getString("def2"));
-                    EditText syn2Text = (EditText) rootView.findViewById(R.id.syn2);
-                    syn2Text.setText(extras.getString("syn2"));
-
                     Long tsLong = System.currentTimeMillis();
                     Date date = new Date(tsLong);
                     SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm");
