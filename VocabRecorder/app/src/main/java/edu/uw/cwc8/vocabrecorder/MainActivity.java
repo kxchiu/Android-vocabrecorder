@@ -63,9 +63,6 @@ public class MainActivity extends AppCompatActivity implements WordFragment.OnWo
             case R.id.action_search:
                 showWordFragment();
                 return true;
-            case R.id.menu_summary:
-                showSummaryFragment();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

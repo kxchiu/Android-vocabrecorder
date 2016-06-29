@@ -7,10 +7,5 @@
         android:title="Refresh"
         android:orderInCategory="10"
         app:showAsAction="ifRoom" />
-    <item android:id="@+id/menu_summary"
-        android:title="Summary"
-        android:orderInCategory="10"
-        app:showAsAction="ifRoom">
-    </item>
 
 </menu>
